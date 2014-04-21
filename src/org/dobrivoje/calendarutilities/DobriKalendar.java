@@ -32,7 +32,7 @@ public class DobriKalendar {
     public static final String DATE_MASK_EN = "yyyy-MM-dd";
 
     public static final String TODAY_DATE_STR = (new SimpleDateFormat(DATE_MASK_EN)).format(new Date());
-    public static final String TODAY_DATETIMR_STR = (new SimpleDateFormat(DATETIME_MASK_EN)).format(new Date());
+    public static final String TODAY_DATETIME_STR = (new SimpleDateFormat(DATETIME_MASK_EN)).format(new Date());
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktori">
@@ -91,11 +91,11 @@ public class DobriKalendar {
     }
 
     protected static synchronized void setTrajanje() {
-        long dt = DobriKalendar.DatumEnd.getTime() - DobriKalendar.DatumStart.getTime();
+        long dt = DatumEnd.getTime() - DatumStart.getTime();
 
-        DobriKalendar.trajanjeSekunde = (int) (dt / 1000);
-        DobriKalendar.trajanjeMinuti = DobriKalendar.trajanjeSekunde / 60;
-        DobriKalendar.trajanjeSati = DobriKalendar.trajanjeMinuti / 60;
+        trajanjeSekunde = (int) (dt / 1000);
+        trajanjeMinuti = trajanjeSekunde / 60;
+        trajanjeSati = trajanjeMinuti / 60;
     }
 
     //<editor-fold defaultstate="collapsed" desc="Godina, mesec, dan...">
