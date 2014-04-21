@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  *
- * @author dobri
+ * Klasa DobriKalendar obezbeđuje sve moguće funkcionalnosti u vezi datuma.
  */
 public class DobriKalendar {
 
@@ -27,6 +27,12 @@ public class DobriKalendar {
     protected static int trajanjeSati;
     protected static int trajanjeMinuti;
     protected static int trajanjeSekunde;
+
+    public static final String DATETIME_MASK_EN = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE_MASK_EN = "yyyy-MM-dd";
+
+    public static final String TODAY_DATE_STR = (new SimpleDateFormat(DATE_MASK_EN)).format(new Date());
+    public static final String TODAY_DATETIMR_STR = (new SimpleDateFormat(DATETIME_MASK_EN)).format(new Date());
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktori">
@@ -75,9 +81,13 @@ public class DobriKalendar {
         return instance = (instance == null ? new DobriKalendar() : instance);
     }
 
-    protected synchronized static Date convertString2Date(String Datum) throws ParseException {
-        c.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(Datum));
+    public static Date convertString2Date(String Datum) throws ParseException {
+        c.setTime(new SimpleDateFormat(DATE_MASK_EN).parse(Datum));
         return c.getTime();
+    }
+
+    public static String convertDate2String(Date Datum) throws ParseException {
+        return new SimpleDateFormat(DATE_MASK_EN).format(Datum);
     }
 
     protected static synchronized void setTrajanje() {
@@ -87,4 +97,21 @@ public class DobriKalendar {
         DobriKalendar.trajanjeMinuti = DobriKalendar.trajanjeSekunde / 60;
         DobriKalendar.trajanjeSati = DobriKalendar.trajanjeMinuti / 60;
     }
+
+    //<editor-fold defaultstate="collapsed" desc="Godina, mesec, dan...">
+    public static int getYear(String Datum) throws ParseException {
+        c.setTime(Datum == null ? new Date() : DobriKalendar.convertString2Date(Datum));
+        return c.get(Calendar.YEAR);
+    }
+
+    public static int getMonth(String Datum) throws ParseException {
+        c.setTime(Datum == null ? new Date() : DobriKalendar.convertString2Date(Datum));
+        return 1 + c.get(Calendar.MONTH);
+    }
+
+    public static int getDay(String Datum) throws ParseException {
+        c.setTime(Datum == null ? new Date() : DobriKalendar.convertString2Date(Datum));
+        return c.get(Calendar.DAY_OF_MONTH);
+    }
+    //</editor-fold>
 }

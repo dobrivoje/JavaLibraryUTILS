@@ -26,7 +26,26 @@ public class SrpskiKalendar {
         "Decembar"
     };
 
+    private static final String[] meseciCirilica = new String[]{
+        "Јануар",
+        "Фебруар",
+        "Март",
+        "Април",
+        "Мај",
+        "Јун",
+        "Јул",
+        "Август",
+        "Септембар",
+        "Октобар",
+        "Новембар",
+        "Децембар"
+    };
+
     public static String getMesecNazivLatinica(int Mesec) {
         return meseciLatinica[Mesec - 1];
+    }
+
+    public static String getMesecNazivCirilica(int Mesec) {
+        return meseciCirilica[Mesec - 1];
     }
 }
